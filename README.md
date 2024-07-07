@@ -50,3 +50,7 @@ python3 app.py
 Open your web browser and go to http://localhost:5000.
 ##### 3. Use the interface:
 ######     . Enter an object name and click "Set Object Name".
+######     . Click "Take Photo" to capture images from the camera feed.
+######     . Click "Train Model" to train the model with the captured images.
+######     . Click "Predict" to predict the class of a new image.
+######     . Click "Save Model" to save  the trained model.
