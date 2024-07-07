@@ -31,10 +31,14 @@ photos/
 │   ├── .......
 │   ├── .......
 │   └── imgN.jpg
+│
 ├── object2/
 │   ├── img1.jpg
 │   ├── img2.jpg
 │   ├── .......
 │   ├── .......
 │   └── imgN.jpg
+│
 ```
+## Using web interface
+A simple web interface is provided to interact with the model. The interface allows you to set object names, take photos, train the model, and predict the class of a new image.
