@@ -49,4 +49,4 @@ python3 app.py
 ##### 2. Open the web interface:
 Open your web browser and go to http://localhost:5000.
 ##### 3. Use the interface:
-    ###### . Enter an object name and click "Set Object Name".
+######     . Enter an object name and click "Set Object Name".
