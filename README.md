@@ -27,8 +27,14 @@ if already you have the images of each object, inside photos directory, create a
 photos/
 ├── object1/
 │   ├── img1.jpg
-│   └── img2.jpg
+│   ├── img2.jpg
+│   ├── .......
+│   ├── .......
+│   └── imgN.jpg
 ├── object2/
 │   ├── img1.jpg
-│   └── img2.jpg
+│   ├── img2.jpg
+│   ├── .......
+│   ├── .......
+│   └── imgN.jpg
 ```
