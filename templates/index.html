@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camera Feed</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #video_section {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        #prediction {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        button, input {
+            margin: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input {
+            width: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.5); 
+        }
+        .modal-content {
+            background-color: white;
+            margin: 15% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 300px; 
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Camera Feed</h1>
+        <div id="video_section">
+            <img id="video_feed" src="">
+            <div id="prediction"></div>
+        </div>
+        <br>
+        <input type="text" id="object_name" placeholder="Enter object name">
+        <div class="button-container">
+            <button onclick="setObjectName()">Set Object Name</button>
+            <button onclick="takePhoto()">Take Photo</button>
+            <button onclick="TrainModel()">Train Model</button>
+            <button id="PredictButton" onclick="Predict()">Predict</button>
+            <button id="SaveModelButton" onclick="SaveModel()">Save Model</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="trainModal" class="modal">
+        <div class="modal-content">
+            <p>Training in progress...</p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const socket = io();
+
+        socket.on('video_feed', function(data) {
+            const img = document.getElementById('video_feed');
+            img.src = 'data:image/jpeg;base64,' + data.frame;
+        });
+
+        function setObjectName() {
+            const objectName = document.getElementById('object_name').value;
+            socket.emit('set_object_name', {'object_name': objectName});
+        }
+
+        function takePhoto() {
+            socket.emit('take_photo');
+        }
+
+        function TrainModel() {
+            showModal();
+            socket.emit('train_model');
+        }
+
+        function Predict() {
+            socket.emit('Predict');
+        }
+
+        function SaveModel() {
+            socket.emit('SaveModel');
+        }
+
+        function showModal() {
+            document.getElementById('trainModal').style.display = 'block';
+        }
+
+        function hideModal() {
+            document.getElementById('trainModal').style.display = 'none';
+        }
+
+        socket.on('training_complete', function() {
+            hideModal();
+        });
+
+        socket.on('prediction_result', function(data) {
+            const predictionDiv = document.getElementById('prediction');
+            predictionDiv.textContent = data.result;
+        });
+    </script>
+</body>
+</html>
