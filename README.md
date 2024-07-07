@@ -15,4 +15,8 @@ The model is trained on images of different objects and can predict the class (i
 ```bash
 git clone git@github.com:alimourii/ObjectsClassifier.git
 ```
-2.
+2. Install the required dependencies:
+```bash
+pip install numpy opencv-python Pillow scikit-learn joblib Flask
+
+### Usage
