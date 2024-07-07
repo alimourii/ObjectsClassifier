@@ -42,3 +42,11 @@ photos/
 ```
 ## Using web interface
 A simple web interface is provided to interact with the model. The interface allows you to set object names, take photos, train the model, and predict the class of a new image.
+##### 1. Start the Flask server:
+``` bash
+python3 app.py
+```
+##### 2. Open the web interface:
+Open your web browser and go to http://localhost:5000.
+##### 3. Use the interface:
+###### . Enter an object name and click "Set Object Name".
