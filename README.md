@@ -23,3 +23,12 @@ pip install numpy opencv-python Pillow scikit-learn joblib Flask
 ## Training the Model
 ##### 1. Organize your training data
 if already you have the images of each object, inside photos directory, create a subdirectory for each class (i.e., each object). Place the images of each object in their respective subdirectory. For example:
+```
+photos/
+├── object1/
+│   ├── img1.jpg
+│   └── img2.jpg
+├── object2/
+│   ├── img1.jpg
+│   └── img2.jpg
+```
