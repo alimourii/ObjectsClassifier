@@ -10,3 +10,8 @@ The model is trained on images of different objects and can predict the class (i
 - [Saving and Loading the Model](Saving-and-Loading-the-Model)
 - [Web Interface](Web-Interface)
 
+# Installation
+1. Clone the repository:
+   ```bash
+git clone https://github.com/your-username/your-repository.git
+cd your-repository
